@@ -21,10 +21,7 @@ const campusSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    Program: {
-        type: String,
-        required: true
-    }
+
 });
 
 const Campus = mongoose.model("Campus", campusSchema);
