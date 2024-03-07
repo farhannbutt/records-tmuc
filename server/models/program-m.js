@@ -24,4 +24,4 @@ const Program = mongoose.model("Program", programSchema);
 module.exports = Program;
 
 
-module.exports = Room;
+module.exports = Program;
