@@ -1,9 +1,9 @@
+//staff router
 const express = require("express");
 const router = express.Router(); 
+const staff = require('../controllers/staff-c');
 
-const campus = require("../controllers/campus-c");
-
-router.route('/').post(campus)
+router.route('/').post(staff)
 
 module.exports = router;
  

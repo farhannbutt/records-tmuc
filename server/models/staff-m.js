@@ -16,11 +16,19 @@ const staffSchema = new mongoose.Schema({
     Email: {
         type: String,
         required: true
-    },
-    Designation: {
+    }, Name: {
         type: String,
         required: true
+    },
+     Designation: {
+     type: String,
+     required: true
+    }, 
+    Phone: {
+        type: Number,
+        required: true
     }
+    
 });
 
 const Staff = mongoose.model("Staff", staffSchema);

@@ -4,7 +4,7 @@ const campus = async (req, res) => {
     try {
         console.log(req.body)
         const { Campus_id, Campus_manager, Name, Location, Contact_number } = req.body;
-        //checking to see that emails are not recreated
+        //adding fields
 
         await Campus.create({
             Campus_id,
