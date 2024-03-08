@@ -27,7 +27,67 @@ const createStudent = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-// get request for all students
+// get a student by entering student id
+const getStudentById = async (req, res) => {
+    try {
+        const studentId = req.params.id;
+
+        // Fetch student by custom ID
+        const student = await Students.findOne({ ID: studentId });
+
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+//check to see error fwhile fetching a request
+        res.status(200).json(student);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+// function to update a student  by id and error mesages included
+
+const updateStudentById = async (req, res) => {
+    try {
+        const studentId = req.params.id;
+        const { Department_id, Campus_id, Name, Email, Phone } = req.body;
+
+        // Update student by custom ID
+        const updatedStudent = await Students.findOneAndUpdate(
+            { ID: studentId },
+            { Department_id, Campus_id, Name, Email, Phone },
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedStudent) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        res.status(200).json(updatedStudent);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+//function to delete a user by id  and error aswell
+const deleteStudentById = async (req, res) => {
+    try {
+        const studentId = req.params.id;
+
+        // Delete student by custom ID
+        const deletedStudent = await Students.findOneAndDelete({ ID: studentId });
+
+        if (!deletedStudent) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        res.status(200).json(deletedStudent);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+// funciton to fetch all students and an error message if nothing in the db
 const getStudents = async (req, res) => {
     try {
         // Fetch all students
@@ -42,5 +102,8 @@ const getStudents = async (req, res) => {
 
 module.exports = {
     createStudent,
-    getStudents,
+    getStudentById,
+    updateStudentById,
+    deleteStudentById,
+    getStudents
 };
