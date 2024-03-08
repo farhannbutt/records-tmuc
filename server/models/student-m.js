@@ -7,11 +7,11 @@ const studentSchema = new mongoose.Schema({
     },
     Department_id: {
         type: Number,
-        required: true
+        required: false
     },
     Campus_id: {
         type: Number,
-        required: true
+        required: false
     },
     Name: {
         type: String,

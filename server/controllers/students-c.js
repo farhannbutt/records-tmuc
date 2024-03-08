@@ -1,16 +1,17 @@
-const  Students  = require('../models/student-m'); //  importing  Sequelize model
+const Students = require('../models/student-m');
 
-const students = async (req, res) => {
+const createStudent = async (req, res) => {
     try {
-        console.log(req.body)
         const { ID, Department_id, Campus_id, Name, Email, Phone } = req.body;
-        //checking to see that emails are not recreated
-        const studentExists = await Students.findOne({Email:Email})
 
-    if(studentExists){
-        return res.status(400).json({mssg:"email already exists"})
-    }
-        // adding data for students
+        // Checking to see if the email already exists
+        const studentExists = await Students.findOne({ Email });
+
+        if (studentExists) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
+
+        // Adding data for students
         const newStudent = await Students.create({
             ID,
             Department_id,
@@ -19,7 +20,6 @@ const students = async (req, res) => {
             Email,
             Phone
         });
-        //
 
         res.status(201).json(newStudent);
     } catch (error) {
@@ -27,5 +27,20 @@ const students = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+// get request for all students
+const getStudents = async (req, res) => {
+    try {
+        // Fetch all students
+        const allStudents = await Students.find();
 
-module.exports = students
+        res.status(200).json(allStudents);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+module.exports = {
+    createStudent,
+    getStudents,
+};
