@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const staffSchema = new mongoose.Schema({
-    Staff_id: {
+    staff_id: {
         type: Number,
         required: true
     },
@@ -24,9 +24,9 @@ const staffSchema = new mongoose.Schema({
      type: String,
      required: true
     }, 
-    Phone: {
+    Contact_number: {
         type: Number,
-        required: true
+        required: false
     }
     
 });

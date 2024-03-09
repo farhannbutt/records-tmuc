@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const programSchema = new mongoose.Schema({
-    ProgramID: {
+    Program_id: {
         type: Number,
         required: true
     },

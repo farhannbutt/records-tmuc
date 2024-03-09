@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
-    ID: {
+    student_id: {
         type: Number,
         required: true
     },
@@ -21,9 +21,13 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Phone: {
+    contact_number: {
         type: Number,
         required: true
+    },
+    rfid: {
+        type: String,
+        required: false
     }
 });
 

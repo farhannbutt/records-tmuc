@@ -12,6 +12,11 @@ const floorSchema = new mongoose.Schema({
     Floor_number: {
         type: Number,
         required: true
+    },
+
+    Campus_id: {
+        type: String,
+        required: true
     }
 });
 

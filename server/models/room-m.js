@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
-    RoomID: {
+    Room_id: {
         type: Number,
         required: true
     },
@@ -9,7 +9,7 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    FloorName: {
+    Floor_id: {
         type: String,
         required: true
     }

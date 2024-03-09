@@ -1,23 +1,87 @@
-const  Floor  = require('../models/floor-m'); //  importing  Sequelize model
+// floor controller
+const Floor = require('../models/floor-m'); 
 
-const floor = async (req, res) => {
+// Create floor
+const createFloor = async (req, res) => {
     try {
-        console.log(req.body)
-        const { Floor_id,  Department_id,  Floor_number} = req.body;
-        //adding fields for floor
+        const { Floor_id, Department_id, Floor_number, Campus_id } = req.body;
 
-        await Courses.create({
+        // Checking if the floor already exists
+        const floorExists = await Floor.findOne({ Floor_id });
+
+        if (floorExists) {
+            return res.status(400).json({ message: "Floor already exists" });
+        }
+
+        // Adding data for floor
+        const newFloor = await Floor.create({
             Floor_id,
             Department_id,
-            Floor_number
+            Floor_number,
+            Campus_id
         });
-        //
 
-        res.status(200).send(req.body);
+        res.status(201).json(newFloor);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
-module.exports = floor
+// Get floor by ID
+const getFloorById = async (req, res) => {
+    try {
+        const floorId = req.params.Floor_id;
+
+        // Fetch floor by custom ID
+        const floor = await Floor.findOne({ Floor_id: floorId });
+
+        if (!floor) {
+            return res.status(404).json({ message: "Floor not found" });
+        }
+
+        res.status(200).json(floor);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+// Delete floor by ID
+const deleteFloorById = async (req, res) => {
+    try {
+        const floorId = req.params.Floor_id;
+
+        // Delete floor by custom ID
+        const deletedFloor = await Floor.findOneAndDelete({ Floor_id: floorId });
+
+        if (!deletedFloor) {
+            return res.status(404).json({ message: "Floor not found" });
+        }
+
+        res.status(200).json(deletedFloor);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+// Get all floors
+const getFloors = async (req, res) => {
+    try {
+        // Fetch all floors
+        const allFloors = await Floor.find();
+
+        res.status(200).json(allFloors);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+module.exports = {
+    createFloor,
+    getFloorById,
+    deleteFloorById,
+    getFloors
+};

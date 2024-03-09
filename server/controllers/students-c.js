@@ -2,7 +2,7 @@ const Students = require('../models/student-m');
 
 const createStudent = async (req, res) => {
     try {
-        const { ID, Department_id, Campus_id, Name, Email, Phone } = req.body;
+        const { student_id, Department_id, Campus_id, Name, Email,  contact_number, rfid } = req.body;
 
         // Checking to see if the email already exists
         const studentExists = await Students.findOne({ Email });
@@ -13,12 +13,13 @@ const createStudent = async (req, res) => {
 
         // Adding data for students
         const newStudent = await Students.create({
-            ID,
+            student_id,
             Department_id,
             Campus_id,
             Name,
             Email,
-            Phone
+            contact_number,
+            rfid
         });
 
         res.status(201).json(newStudent);
@@ -30,15 +31,15 @@ const createStudent = async (req, res) => {
 // get a student by entering student id
 const getStudentById = async (req, res) => {
     try {
-        const studentId = req.params.id;
+        const studentId = req.params.student_id;
 
         // Fetch student by custom ID
-        const student = await Students.findOne({ ID: studentId });
+        const student = await Students.findOne({ student_id: studentId });
 
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }
-//check to see error fwhile fetching a request
+//check to see error while fetching a request
         res.status(200).json(student);
     } catch (error) {
         console.error(error);
@@ -49,13 +50,13 @@ const getStudentById = async (req, res) => {
 
 const updateStudentById = async (req, res) => {
     try {
-        const studentId = req.params.id;
-        const { Department_id, Campus_id, Name, Email, Phone } = req.body;
+        const studentId = req.params.student_id;
+        const { Department_id, Campus_id, Name, Email, contact_number, rfid } = req.body;
 
         // Update student by custom ID
         const updatedStudent = await Students.findOneAndUpdate(
-            { ID: studentId },
-            { Department_id, Campus_id, Name, Email, Phone },
+            { student_id: studentId },
+            { Department_id, Campus_id, Name, Email, contact_number, rfid },
             { new: true } // Return the updated document
         );
 
@@ -72,10 +73,10 @@ const updateStudentById = async (req, res) => {
 //function to delete a user by id  and error aswell
 const deleteStudentById = async (req, res) => {
     try {
-        const studentId = req.params.id;
+        const studentId = req.params.student_id;
 
         // Delete student by custom ID
-        const deletedStudent = await Students.findOneAndDelete({ ID: studentId });
+        const deletedStudent = await Students.findOneAndDelete({ student_id: studentId });
 
         if (!deletedStudent) {
             return res.status(404).json({ message: "Student not found" });
