@@ -10,7 +10,7 @@ const createFloor = async (req, res) => {
         const floorExists = await Floor.findOne({ Floor_id });
 
         if (floorExists) {
-            return res.status(400).json({ message: "Floor already exists" });
+            return res.status(400).json({ message: "Floor already existss" });
         }
 
         // Adding data for floor
