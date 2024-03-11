@@ -8,6 +8,7 @@ const programrouter = require("./router/program-r");
 const floorrouter = require("./router/floor-r");
 const departmentrouter = require("./router/department-r");
 const rfidrouter = require("./router/rfid_device-r");
+const studentcourserouter = require("./router/studentcourse-r");
 
 
 // connecting to db
@@ -22,6 +23,7 @@ app.use("/api/program", programrouter);
 app.use("/api/floor", floorrouter);
 app.use("/api/department", departmentrouter);
 app.use("/api/rfid-device", rfidrouter);
+app.use("/api/studentcourse", studentcourserouter);
 
 
 
