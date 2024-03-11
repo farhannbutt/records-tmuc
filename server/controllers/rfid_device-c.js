@@ -3,11 +3,11 @@ const  Devices  = require('../models/rfid_device-m'); //  importing  Sequelize m
 const createrfid_id = async (req, res) => {
     try {
         console.log(req.body)
-        const { id, Name} = req.body;
+        const { Device_id, Name} = req.body;
         //adding fields for devices
 
         await Devices.create({
-            id,
+            Device_id,
             Name
     
         });
@@ -23,13 +23,13 @@ const createrfid_id = async (req, res) => {
 //function to update rfid device with error message
 const updaterfid_id = async (req, res) => {
     try {
-        const rfidID = req.params.id;
-        const { Name,id  } = req.body;
+        const rfidID = req.params.Device_id;
+        const { Name,Device_id  } = req.body;
 
         // Update student by custom ID
         const updatedrfid = await Devices.findOneAndUpdate(
-            { id: rfidID },
-            { Name, id },
+            { Device_id: rfidID },
+            { Name, Device_id },
             { new: true } // Return the updated document
         );
 
@@ -61,10 +61,10 @@ const getrfid_id = async (req, res) => {
 //delete rfid device with message
 const deleterfid_id = async (req, res) => {
     try {
-        const rfidID = req.params.id;
+        const rfidID = req.params.Device_id;
 
         // Delete RFID device by custom ID
-        const deletedrfid = await Devices.findOneAndDelete({ id: rfidID });
+        const deletedrfid = await Devices.findOneAndDelete({ Device_id: rfidID });
 
         if (!deletedrfid) {
             return res.status(404).json({ message: "Device not found" });
@@ -79,10 +79,10 @@ const deleterfid_id = async (req, res) => {
 // function to get rfid id device by id and error message if it isnt available
 const getrfidById = async (req, res) => {
     try {
-        const rfidID = req.params.id;
+        const rfidID = req.params.Device_id;
 
         // Fetch RFID device by custom ID
-        const rfid = await Devices.findOne({ id: rfidID });
+        const rfid = await Devices.findOne({ Device_id: rfidID });
 
         if (!rfid) {
             return res.status(404).json({ message: "Device not found" });

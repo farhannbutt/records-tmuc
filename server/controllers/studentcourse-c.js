@@ -1,7 +1,6 @@
 const Studentcourse = require('../models/Studentcourse-m');
 const Student = require('../models/student-m');
 const Course = require('../models/courses-m');
-const studentscourse = require('../models/Studentcourse-m');
 
 const createStudentcourse = async (req, res) => {
     try {
