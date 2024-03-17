@@ -67,7 +67,7 @@ const deleteStudentdevice = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
+//method to get student device objects by student id 
 const getStudentdevicesByStudentId = async (req, res) => {
     try {
         const { Student_id } = req.params;
@@ -78,7 +78,7 @@ const getStudentdevicesByStudentId = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
+// method to get student device objects by device id 
 const getStudentdevicesByDeviceId = async (req, res) => {
     try {
         const { Device_id } = req.params;

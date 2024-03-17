@@ -6,7 +6,7 @@ const createStudentcourse = async (req, res) => {
     try {
         const { Student_id, Course_id } = req.body;
 
-        // Checking to see if the student already exists
+        // Checking to see if the student already existsm
         const studentExists = await Student.findOne({ Student_id });
 
         if (!studentExists) {
@@ -67,7 +67,7 @@ const deleteStudentcourse = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
+// get list of courses associated with a student id  
 const getStudentcoursesByStudentId = async (req, res) => {
     try {
         const { Student_id } = req.params;
@@ -78,7 +78,7 @@ const getStudentcoursesByStudentId = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
+//get a list of students with associated courses id
 const getStudentcoursesByCourseId = async (req, res) => {
     try {
         const { Course_id } = req.params;
