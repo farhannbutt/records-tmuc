@@ -1,0 +1,44 @@
+/* RoomTable.css */
+
+/* Container styles */
+.room-table-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Table styles */
+  .room-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  .room-table thead th {
+    padding: 12px;
+    text-align: left;
+    background-color: #336494;
+    border-bottom: 2px solid #dee2e6;
+    color: #333;
+  }
+  
+  /* Body styles */
+  .room-table tbody tr:hover {
+    background-color: #f2f4f6;
+  }
+  
+  /* Row styles */
+  .room-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    color: #555;
+  }
+  
+  /* Alternating row styles */
+  .room-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  

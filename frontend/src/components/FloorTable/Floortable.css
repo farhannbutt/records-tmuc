@@ -1,0 +1,44 @@
+/* FloorTable.css */
+
+/* Container styles */
+.floor-table-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Table styles */
+  .floor-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  .floor-table thead th {
+    padding: 12px;
+    text-align: left;
+    background-color: #336494;
+    border-bottom: 2px solid #dee2e6;
+    color: #333;
+  }
+  
+  /* Body styles */
+  .floor-table tbody tr:hover {
+    background-color: #f2f4f6;
+  }
+  
+  /* Row styles */
+  .floor-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    color: #555;
+  }
+  
+  /* Alternating row styles */
+  .floor-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
