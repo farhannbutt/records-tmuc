@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to bottom right, rgb(220, 50, 50), rgb(255, 255, 255));
+  background: linear-gradient(to bottom right, rgb(103, 76, 201), rgb(184, 66, 149), rgb(227, 67, 67));
 }
 
 /* Adding space between both of the pictures */
@@ -18,6 +18,8 @@
   height: 350px; /* Maintain aspect ratio */
   border-radius: 15px; /* Add rounded corners */
   margin: 0 10px; /* Add margin to create space between images */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .campuses {

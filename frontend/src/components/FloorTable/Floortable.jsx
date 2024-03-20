@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './Floortable.css';
+import { Link } from 'react-router-dom';
 
 const FloorTable = () => {
   // Sample data (replace with actual data fetched from the backend)
@@ -26,7 +27,7 @@ const FloorTable = () => {
         <tbody>
           {floors.map((floor) => (
             <tr key={floor.id}>
-              <td><button>{floor.id}</button></td>
+              <td><Link to= "/rooms">{floor.id}</Link></td>
               <td>{floor.departmentId}</td>
               <td>{floor.floorNumber}</td>
               <td>{floor.campusId}</td>

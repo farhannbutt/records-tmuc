@@ -1,6 +1,5 @@
-// RoomTable.jsx
-
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './roomtable.css';
 
 const RoomTable = () => {
@@ -26,7 +25,11 @@ const RoomTable = () => {
         <tbody>
           {rooms.map((room) => (
             <tr key={room.room_id}>
-              <td><button>{room.room_id}</button></td>
+              <td>
+                <Link to="/students">
+                  <button>{room.room_id}</button> {/* Enclose button inside Link */}
+                </Link>
+              </td>
               <td>{room.name}</td>
               <td>{room.floor_id}</td>
             </tr>

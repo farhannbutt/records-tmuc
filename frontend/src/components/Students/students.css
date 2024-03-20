@@ -1,13 +1,13 @@
-/* RoomTable.css */
+/* StudentTable.css */
 
 /* Container styles */
-.room-table-container {
+.student-table-container {
     width: 100%;
     margin: 0 auto;
   }
   
   /* Table styles */
-  .room-table {
+  .student-table {
     width: 100vw;
     border-collapse: collapse;
     background-color: #fff;
@@ -17,7 +17,7 @@
   }
   
   /* Header styles */
-  .room-table thead th {
+  .student-table thead th {
     padding: 12px;
     text-align: left;
     background-color: #336494;
@@ -26,19 +26,19 @@
   }
   
   /* Body styles */
-  .room-table tbody tr:hover {
+  .student-table tbody tr:hover {
     background-color: #f2f4f6;
   }
   
   /* Row styles */
-  .room-table tbody td {
+  .student-table tbody td {
     padding: 10px;
     border-bottom: 1px solid #dee2e6;
     color: #555;
   }
   
   /* Alternating row styles */
-  .room-table tbody tr:nth-child(even) {
+  .student-table tbody tr:nth-child(even) {
     background-color: #f8f9fa;
   }
   

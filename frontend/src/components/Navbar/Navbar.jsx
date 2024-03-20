@@ -1,4 +1,5 @@
 // Navbar.jsx
+import { Link } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import './Navbar.css';
@@ -19,16 +20,16 @@ const Navbar = () => {
       <div className='Login'>
         <ul className="nav-menu">
           <li className={activeItem === 0 ? 'active' : ''} onClick={() => handleItemClick(0)}>
-            <a href="Home">Home</a>
+            <a href="/">Home</a>
             {activeItem === 0 && <hr />}
           </li>
        
           <li className={activeItem === 1 ? 'active' : ''} onClick={() => handleItemClick(1)}>
-            <a href="Department">Services</a>
+            <a href="floors">Floor</a>
             {activeItem === 1 && <hr />}
           </li>
           <li className={activeItem === 2 ? 'active' : ''} onClick={() => handleItemClick(2)}>
-            <a href="Contact">Contact us</a>
+            <a href="Rooms">Room</a>
             {activeItem === 2 && <hr />}
           </li>
           <li className={activeItem === 3 ? 'active' : ''} onClick={() => handleItemClick(2)}>
@@ -38,9 +39,9 @@ const Navbar = () => {
 
           
         </ul>
-        <a href="/Login">
+        <Link to="/Login"> 
           <button>Login</button>
-        </a>
+        </Link>
       </div>
     </div>
   );

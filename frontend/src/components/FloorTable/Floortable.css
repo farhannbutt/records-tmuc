@@ -2,13 +2,14 @@
 
 /* Container styles */
 .floor-table-container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
   }
   
   /* Table styles */
   .floor-table {
-    width: 100%;
+    width: 100vw;
+    /* height:100vh; */
     border-collapse: collapse;
     background-color: #fff;
     border-radius: 8px;

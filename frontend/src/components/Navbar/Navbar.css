@@ -11,19 +11,19 @@
   }
   
   .navbar img {
-    width: 100px; /* Adjust the width as needed */
+    width: 70px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Add margin as needed */
     border-radius: 8px; /* Add border-radius for rounded corners */
-    background-color: #ca2aca; /* Light purple-gray background color */
+    background-color: #706570; 
   }
   
   .navbar p {
-    margin: 0; /* Remove default margin for the paragraph */
+    margin: 0; 
   }
   
   .navbar ul {
-    list-style: none; /* Remove default list styles */
+    list-style: none; 
     display: flex;
   }
   
@@ -44,7 +44,7 @@
   }
   
   .Login button {
-    background-color: #65085a; /* Example button background color, adjust as needed */
+    background-color: #b545a8; /* Example button background color, adjust as needed */
     color: rgb(233, 227, 227); /* Example button text color, adjust as needed */
     border-radius: 8px;
     padding: 10px 20px;
