@@ -10,7 +10,7 @@ const departmentrouter = require("./router/department-r");
 const rfidrouter = require("./router/rfid_device-r");
 const studentcourserouter = require("./router/studentcourse-r");
 const studentdevicerouter = require("./router/studentdevice-r");
-
+const roomrouter = require("./router/rooms-r")
 
 // connecting to db
 const connectDb = require("./utils/db");
@@ -26,6 +26,7 @@ app.use("/api/department", departmentrouter);
 app.use("/api/rfid-device", rfidrouter);
 app.use("/api/studentcourse", studentcourserouter);
 app.use("/api/studentdevice", studentdevicerouter);
+app.use("/api/rooms", roomrouter);
 
 
 

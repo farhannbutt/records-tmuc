@@ -26,8 +26,8 @@ const RoomTable = () => {
           {rooms.map((room) => (
             <tr key={room.room_id}>
               <td>
-                <Link to="/students">
-                  <button>{room.room_id}</button> {/* Enclose button inside Link */}
+                <Link to="/Course">
+                  <button>{room.room_id}</button> 
                 </Link>
               </td>
               <td>{room.name}</td>

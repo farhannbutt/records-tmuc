@@ -36,6 +36,11 @@ const Navbar = () => {
             <a href="Students">Students</a>
             {activeItem === 3 && <hr />}
           </li>
+          <li className={activeItem === 4 ? 'active' : ''} onClick={() => handleItemClick(2)}>
+            <a href="Course">Courses</a>
+            {activeItem === 4 && <hr />}
+          </li>
+
 
           
         </ul>

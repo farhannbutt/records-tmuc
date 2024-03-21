@@ -5,6 +5,7 @@ import RoomTable from './components/Roomtable/roomtable.jsx';
 import Home from './pages/Home.jsx';
 import StudentTable from './components/Students/students.jsx';
 import Login from './components/Login/Login.jsx';
+import CoursesTable from './components/Courses/CourseTable.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/floors" element={<FloorTable/>} />
         <Route path="/rooms" element={<RoomTable/>} />
         <Route path="/Login" element = {<Login />} />
+        <Route path = "/Course" element = {< CoursesTable/>}/>
 
       </Routes>
     </BrowserRouter>
