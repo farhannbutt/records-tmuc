@@ -14,9 +14,9 @@ function App() {
         <Route path="/" element={<Home />} />
          <Route path="/students" element={<StudentTable/>} /> 
         <Route path="/floors" element={<FloorTable/>} />
-        <Route path="/rooms" element={<RoomTable/>} />
+        <Route path="/rooms/:Floor_id" element={<RoomTable/>} />
         <Route path="/Login" element = {<Login />} />
-        <Route path = "/Course" element = {< CoursesTable/>}/>
+        <Route path = "/Course/:Room_id" element = {< CoursesTable/>}/>
 
       </Routes>
     </BrowserRouter>

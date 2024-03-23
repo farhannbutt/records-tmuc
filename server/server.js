@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const studentrouter = require("./router/students-r");
 const campusrouter = require("./router/campus-r");
 const staffrouter = require("./router/staff-r");
@@ -14,6 +15,14 @@ const roomrouter = require("./router/rooms-r")
 
 // connecting to db
 const connectDb = require("./utils/db");
+//allowing front end to pass backend
+const corsOption = {
+    origin: "http://localhost:3000",
+    methods: "GET, POST, DELETE, PATCH, HEAD",
+    credentials: true,
+
+}
+app.use(cors(corsOption));
 app.use(express.json())
 // middleware for the fields
 app.use("/api/students", studentrouter);

@@ -1,16 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import {React, useState, useEffect} from 'react';
+import { useParams, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './roomtable.css';
 
 const RoomTable = () => {
-  // Sample data (replace with actual data fetched from the backend)
-  const rooms = [
-    { room_id: 1, name: "Room 101", floor_id: 1 },
-    { room_id: 2, name: "Room 102", floor_id: 1 },
-    { room_id: 3, name: "Room 201", floor_id: 1 },
-    { room_id: 4, name: "Room 202", floor_id: 1 },
-    // Add more rooms as needed
-  ];
+  const {Floor_id} = useParams()
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/rooms/by-floor-id/${Floor_id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setRooms(data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []); // Empty dependency array en
 
   return (
     <div className="room-table-container">
@@ -20,18 +38,18 @@ const RoomTable = () => {
             <th>Room ID</th>
             <th>Name</th>
             <th>Floor ID</th>
+            <th>Actions</th> {/* New column for actions */}
           </tr>
         </thead>
         <tbody>
           {rooms.map((room) => (
-            <tr key={room.room_id}>
+            <tr key={room.Room_id}>
+              <td>{room.Room_id}</td>
+              <td>{room.Name}</td>
+              <td>{room.Floor_id}</td>
               <td>
-                <Link to="/Course">
-                  <button>{room.room_id}</button> 
-                </Link>
-              </td>
-              <td>{room.name}</td>
-              <td>{room.floor_id}</td>
+                <Link to={`/Course/${room.Room_id}`}>{room.Room_id}</Link>
+              </td> 
             </tr>
           ))}
         </tbody>

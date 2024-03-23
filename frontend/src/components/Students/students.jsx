@@ -1,55 +1,33 @@
-// StudentTable.jsx
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './students.css';
 
 const StudentTable = () => {
+  const [students, setStudents] = useState([]);
 
-    const sampleStudents = [
-        {
-          studentId: 1,
-          departmentId: '101',
-          campusId: 1,
-          name: 'John Doe',
-          email: 'john.doe@example.com',
-          checkInTime: '09:00 AM',
-          checkOutTime: '05:00 PM'
-        },
-        {
-          studentId: 2,
-          departmentId: 102,
-          campusId: 2,
-          name: 'Jane Smith',
-          email: 'jane.smith@example.com',
-          checkInTime: '08:30 AM',
-          checkOutTime: '04:30 PM'
-        },
-        {
-          studentId: 3,
-          departmentId: 103,
-          campusId: 1,
-          name: 'Alice Johnson',
-          email: 'alice.johnson@example.com',
-          checkInTime: '09:15 AM',
-          checkOutTime: '05:15 PM'
-        },
-        {
-          studentId: 4,
-          departmentId: 104,
-          campusId: 2,
-          name: 'Bob Brown',
-          email: 'bob.brown@example.com',
-          checkInTime: '08:45 AM',
-          checkOutTime: '04:45 PM'
-        },         {
-            studentId: 4,
-            departmentId: 104,
-            campusId: 2,
-            name: 'Bob Brown',
-            email: 'bob.brown@example.com',
-            checkInTime: '08:45 AM',
-            checkOutTime: '04:45 PM'
-          }];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/students', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setStudents(data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []); // Empty dependency array ensures the effect runs only once
+
   return (
     <div className="student-table-container">
       <table className="student-table">
@@ -60,18 +38,22 @@ const StudentTable = () => {
             <th>Campus ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Contact-number</th>
+            <th>RFID</th>
             <th>Check-in Time</th>
             <th>Check-out Time</th>
           </tr>
         </thead>
         <tbody>
-          {sampleStudents.map(student => (
-            <tr key={student.studentId}>
-              <td>{student.studentId}</td>
-              <td>{student.departmentId}</td>
-              <td>{student.campusId}</td>
-              <td>{student.name}</td>
-              <td>{student.email}</td>
+          {students.map(student => (
+            <tr key={student.Student_id}>
+              <td>{student.Student_id}</td>
+              <td>{student.Department_id}</td>
+              <td>{student.Campus_id}</td>
+              <td>{student.Name}</td>
+              <td>{student.Email}</td>
+              <td>{student.contact_number}</td>
+              <td>{student.rfid}</td>
               <td>{student.checkInTime}</td>
               <td>{student.checkOutTime}</td>
             </tr>
@@ -80,6 +62,6 @@ const StudentTable = () => {
       </table>
     </div>
   );
-}
+};
 
 export default StudentTable;

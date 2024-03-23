@@ -78,9 +78,26 @@ const getRooms = async (req, res) => {
     }
 };
 
+// Get rooms by Floor_id
+const getRoomsByFloorId = async (req, res) => {
+    try {
+        const { Floor_id } = req.params;
+
+        // Fetch rooms where Floor_id matches
+        const rooms = await Room.find({ Floor_id });
+
+        res.status(200).json(rooms);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
 module.exports = {
     createRoom,
     getRoomById,
     deleteRoomById,
-    getRooms
+    getRooms,
+    getRoomsByFloorId
 };

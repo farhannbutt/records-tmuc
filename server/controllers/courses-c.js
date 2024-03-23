@@ -3,7 +3,7 @@ const Course = require('../models/courses-m');
 // Create a new course
 const createCourse = async (req, res) => {
     try {
-        const { Course_id, Name, Credits, Program } = req.body;
+        const { Course_id, Name, Credits, Program, Room_id, time_slot } = req.body;
 
         // Checking if the course already exists
         const courseExists = await Course.findOne({ Course_id });
@@ -17,7 +17,9 @@ const createCourse = async (req, res) => {
             Course_id,
             Name,
             Credits,
-            Program
+            Program,
+            Room_id,
+            time_slot
         });
 
         res.status(201).json(newCourse);
@@ -77,6 +79,24 @@ const getCourses = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+// Get courses by Room_id
+const getCoursesByRoomId = async (req, res) => {
+    try {
+        const { Room_id } = req.params;
 
-module.exports = { createCourse, getCourseById, deleteCourseById, getCourses };
+        // Fetch courses by Room_id
+        const courses = await Course.find({ Room_id });
+
+        if (!courses.length) {
+            return res.status(404).json({ message: "No courses found for this room" });
+        }
+
+        res.status(200).json(courses);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+module.exports = { createCourse, getCourseById, deleteCourseById, getCourses, getCoursesByRoomId };
 

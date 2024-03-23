@@ -1,22 +1,35 @@
-import React from 'react';
-import './CourseTable.css'; // Add CSS file for styling
-import { Link } from 'react-router-dom';
+import {React, useState, useEffect} from 'react';
+import './CourseTable.css'; 
+import { Link, useParams } from 'react-router-dom';
 
 const CoursesTable = () => {
-
-  const courses = [
-    { id: 1, name: "Course 1", credits: 3, program: "Program A" },
-    { id: 2, name: "Course 2", credits: 4, program: "Program B" },
-    { id: 3, name: "Course 3", credits: 3, program: "Program A" },
-    { id: 4, name: "Course 4", credits: 2, program: "Program C" },
-  ];
-
-  const slots = [
-    { id: 1, name: "08:00 - 10:00" },
-    { id: 2, name: "10:00 - 12:00" },
-    { id: 3, name: "12:00 - 02:00" },
-    { id: 4, name: "02:00 - 04:00" },
-  ];
+    const { Room_id } = useParams();
+    const [courses, setCourses] = useState([]);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/course/by-room-id/${Room_id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+  
+          const data = await response.json();
+          console.log(JSON.stringify(data))
+          setCourses(data); // Update state with fetched data
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData(); // Call the fetchData function when the component mounts
+    }, []); // Empty dependency array en
 
   return (
     <div className="courses-table-container">
@@ -27,17 +40,18 @@ const CoursesTable = () => {
             <th>Name</th>
             <th>Credits</th>
             <th>Program</th>
-            <th>Slot</th> {/* New column for slots */}
+            <th>Slot</th> 
           </tr>
         </thead>
         <tbody>
           {courses.map((course, index) => ( // Mapping over courses
-            <tr key={course.id}>
-              <td><Link to="/students">{course.id}</Link></td>
-              <td>{course.name}</td>
-              <td>{course.credits}</td>
-              <td>{course.program}</td>
-              <td>{slots[index].name}</td> {/* Displaying corresponding slot */}
+            <tr key={course.Course_id}>
+              <td><Link to="/students">{course.Course_id}</Link></td>
+              <td>{course.Name}</td>
+              <td>{course.Credits}</td>
+              <td>{course.Program}</td>
+              <td>{course.Room_id}</td>
+              <td>{course.time_slot}</td> 
             </tr>
           ))}
         </tbody>

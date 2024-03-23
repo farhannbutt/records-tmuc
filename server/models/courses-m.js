@@ -16,7 +16,16 @@ const courseSchema = new mongoose.Schema({
     Program: {
         type: String,
         required: true
+    },
+   Room_id: {
+        type: String,
+        required: false
+    },
+    time_slot: {
+        type:String,
+        required:false
     }
+
 });
 
 const Course = mongoose.model("Course", courseSchema);
