@@ -12,6 +12,6 @@ const loginSchema = new mongoose.Schema({
 
 });
 
-const Floor = mongoose.model("Floor", loginSchema)
+const Login = mongoose.model("Login", loginSchema)
 
-module.exports = Floor;
+module.exports = Login;
