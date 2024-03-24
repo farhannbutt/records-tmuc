@@ -6,7 +6,7 @@ import Home from './pages/Home.jsx';
 import StudentTable from './components/Students/students.jsx';
 import Login from './components/Login/Login.jsx';
 import CoursesTable from './components/Courses/CourseTable.jsx';
-import RegistrationTable, { Registration } from './components/Registration/registration.jsx';
+import RegistrationTable from './components/Registration/registration.jsx';
 
 
 

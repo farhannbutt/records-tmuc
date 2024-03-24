@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./registration.css";
+import { useNavigate } from "react-router-dom";
 
 export const Registration = () => {
     const [user, setUser] = useState({
@@ -8,7 +9,8 @@ export const Registration = () => {
         Phone: "",
         Password: ""
     });
-
+    const navigate = useNavigate()
+    
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUser({
@@ -17,13 +19,34 @@ export const Registration = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    // Handling the form submission
+    const handleSubmit = async (e) => {
         e.preventDefault(); 
-        
-        // Submit the form data to the server or handle registration logic
-        console.log("Form submitted:", user);
+
+        try {
+            // Submit the form data to the server or handle registration logic
+            console.log("Form submitted:", user);
+            const response = await fetch(`http://localhost:5000/api/registration`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user) // Send user data in the request body
+            });
+
+            if (response.ok) {
+              setUser({UserName: "", Password: "", Email: "", Phone: ""})
+              navigate("/login")
+            }
+
+            const data = await response.json();
+            console.log(JSON.stringify(data));
+            // Handle response data as needed
+        } catch (error) {
+            console.error('register', error);
+        }
     };
-    
+
     return (
         <>
             <section>
@@ -31,7 +54,7 @@ export const Registration = () => {
                     <div className="Section-registration">
                         <div className="registration-form">
                             <h1 className="main-heading">Registration</h1>
-                            <form onSubmit={handleSubmit}> {/* Add form element and onSubmit handler */}
+                            <form onSubmit={handleSubmit}>
                                 <label htmlFor="UserName">Username</label>
                                 <input
                                     type="text"

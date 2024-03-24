@@ -30,8 +30,8 @@ const createRegistration = async (req, res) => {
 // Get all Registrations
 const getRegistration = async (req, res) => {
     try {
-        // Get all Registarations
-        const allRegistration = await Login.find();
+        // Get all Registrations
+        const allRegistration = await Registration.find();
 
         res.status(200).json(allRegistration);
     } catch (error) {
@@ -43,5 +43,4 @@ const getRegistration = async (req, res) => {
 module.exports = {
     createRegistration,
     getRegistration
-
 };
