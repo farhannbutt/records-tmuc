@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Set a minimum height to ensure the form is vertically centered */
     background: linear-gradient(to bottom right, rgb(103, 76, 201), rgb(184, 66, 149), rgb(227, 67, 67));
 }
 
@@ -10,27 +10,23 @@
     text-align: center;
 }
 
-.registration-container {
+.registration-form {
     background-color: #f2f2f2;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px; 
 }
 
 .main-heading {
     margin-bottom: 20px;
 }
 
-.registration-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
+.registration-form label {
     margin-bottom: 10px;
 }
 
-input {
+.registration-form input {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
@@ -45,8 +41,7 @@ input {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 500px;
-  
+    width: 100%; /* Make the button full width */
 }
 
 .registration-button:hover {
