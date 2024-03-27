@@ -1,14 +1,15 @@
+// Login component
 import { useState } from "react";
-import "./login.css"
+import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-    // used to store fields in user also ask ali to explain
     const [user, setUser] = useState({
-        username: "",
-        password: ""
+        UserName: "",
+        Password: ""
     });
-
-    // handling the input values
+    const navigate = useNavigate();
+    
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUser({
@@ -16,47 +17,74 @@ export const Login = () => {
             [name]: value,
         });
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+
+            console.log("login form", response)
+
+            if (response.ok) {
+                setUser({UserName:"", Password:""})
+                setUser(user);
+                navigate("/");
+            } else {
+                alert("invalid credentials")
+                console.log("invalid credentials")
+                // navigate("/");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+        }
+    };
     
     return (
         <>
             <section>
-                {/* creating login page. selected div and container */}
                 <main>
-                    {/* main section of the page */}
                     <div className="Section-login">
-                        {/* container to add image */}
                         <div className="Login-grid">
-                        <div className="login-form">
-                            <h1 className="main-heading">Login</h1>
-                            {/* main form */}
-                            <label htmlFor="username">Username</label>
-                            <input
-                                type="text"
-                                name="username"
-                                placeholder="Username"
-                                id="username"
-                                required
-                                autoComplete="off"
-                                value={user.username}
-                                onChange={handleInput}
-                            />
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                id="password"
-                                required
-                                autoComplete="off"
-                                value={user.password}
-                                onChange={handleInput}
-                            />
-                        </div>
-                        <button type="submit" className="loginbutton">Login</button>
+                            <div className="login-form">
+                                <h1 className="main-heading">Login</h1>
+                                <label htmlFor="UserName">UserName</label>
+                                <input
+                                    type="text"
+                                    name="UserName"
+                                    placeholder="UserName"
+                                    id="UserName"
+                                    required
+                                    autoComplete="off"
+                                    value={user.UserName}
+                                    onChange={handleInput}
+                                />
+                                <label htmlFor="Password">Password</label>
+                                <input
+                                    type="Password"
+                                    name="Password"
+                                    placeholder="Password"
+                                    id="Password"
+                                    required
+                                    autoComplete="off"
+                                    value={user.Password}
+                                    onChange={handleInput}
+                                />
+                                <button type="submit" className="loginbutton" onClick={handleSubmit}>Login</button>
+                            </div>
                         </div>
                     </div>
                 </main>
             </section>
+            {/* Link to registration page */}
+            <div className="not-registered">
+                <p>Not registered? <a href="/registration">Register here</a></p>
+            </div>
         </>
     );
 };

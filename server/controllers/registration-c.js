@@ -1,4 +1,5 @@
 const Registration = require('../models/Registration-m');
+const jwt = require("jsonwebtoken");
 
 // Create Registration
 const createRegistration = async (req, res) => {
@@ -12,23 +13,23 @@ const createRegistration = async (req, res) => {
             return res.status(400).json({ message: "Email already exists" });
         }
 
-        // Adding data for Registration
         const newRegistration = await Registration.create({
             UserName,
-            Password,
+            Password: Password,
             Email,
             Phone
         });
 
-        res.status(201).json(newRegistration);
+        res.status(201).json({ newRegistration, token: await newRegistration.generateToken(), 
+        userId: newRegistration._id.toString() });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error over here' });
     }
 };
 
 // Get all Registrations
-const getRegistration = async (req, res) => {
+const getRegistration = async (req, res) =>  {
     try {
         // Get all Registrations
         const allRegistration = await Registration.find();

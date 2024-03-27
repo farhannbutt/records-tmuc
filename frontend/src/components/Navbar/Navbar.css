@@ -5,7 +5,8 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Add padding as needed */
+    padding-top: 10px; /* Add padding as needed */
+    padding-bottom: 10px; /* Add padding as needed */
     background-color: #282626; /* Example background color, adjust as needed */
     color: white; /* Example text color, adjust as needed */
   }
@@ -33,7 +34,7 @@
   
   .navbar a {
     text-decoration: none;
-    color: white; /* Example link text color, adjust as needed */
+    color: white; 
   }
 
   .Login{

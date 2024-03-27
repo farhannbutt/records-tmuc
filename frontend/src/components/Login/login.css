@@ -1,56 +1,96 @@
-/* Login.css */
+/* login.css */
 .Section-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom right, rgb(103, 76, 201), rgb(184, 66, 149), rgb(227, 67, 67));
+  display: flex;/* login.css */
 
-  }
-
-  
-  .login-main {
-    text-align: center;
-  }
-  
-  .login-container {
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .main-heading {
-    margin-bottom: 20px;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
+  /* Adjust layout for labels */
+  .label {
     margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+    display: block; /* Ensure labels are displayed as blocks */
   }
   
-  input {
+  /* Adjust layout for inputs */
+  .input {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
     border: 1px solid #ccc;
     width: 100%;
+    background-color: #fff; /* Add white background to input fields */
   }
   
-  .login-button {
+  /* Add margin to separate the button from the input field */
+  .loginbutton {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make the button full width */
+    margin-top: 10px;
   }
   
-  .login-button:hover {
+  /* Add hover effect to button */
+  .loginbutton:hover {
     background-color: #0056b3;
   }
   
+  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, rgb(103, 76, 201), rgb(184, 66, 149), rgb(227, 67, 67));
+}
+
+
+
+.login-form {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.main-heading {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+  text-transform: uppercase; /* Make the heading uppercase for emphasis */
+}
+
+.label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+
+.loginbutton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Make the button full width */
+  margin-top: 10px; /* Add margin to separate the button from the input field */
+}
+
+.loginbutton:hover {
+  background-color: #0056b3;
+}
+
+/* Adjust layout for label and input */
+.label, .input {
+  display: block;
+}
+
+.input {
+  margin-top: 5px; 
+}

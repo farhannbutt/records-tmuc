@@ -38,18 +38,15 @@ const RoomTable = () => {
             <th>Room ID</th>
             <th>Name</th>
             <th>Floor ID</th>
-            <th>Actions</th> {/* New column for actions */}
+            {/* <th>Actions</th>  */}
           </tr>
         </thead>
         <tbody>
           {rooms.map((room) => (
             <tr key={room.Room_id}>
-              <td>{room.Room_id}</td>
+              <Link to={`/Course/${room.Room_id}`}>{room.Room_id}</Link>
               <td>{room.Name}</td>
               <td>{room.Floor_id}</td>
-              <td>
-                <Link to={`/Course/${room.Room_id}`}>{room.Room_id}</Link>
-              </td> 
             </tr>
           ))}
         </tbody>
