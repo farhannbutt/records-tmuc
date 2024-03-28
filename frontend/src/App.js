@@ -7,6 +7,8 @@ import StudentTable from './components/Students/students.jsx';
 import Login from './components/Login/Login.jsx';
 import CoursesTable from './components/Courses/CourseTable.jsx';
 import RegistrationTable from './components/Registration/registration.jsx';
+import Simulator from './components/Simulator/simulator.jsx';
+
 
 
 
@@ -21,6 +23,8 @@ function App() {
         <Route path="/Login" element = {<Login />} />
         <Route path = "/Course/:Room_id" element = {< CoursesTable/>}/>
         <Route path="/registration" element = {<RegistrationTable />} />
+        <Route path="/simulator" element = {<Simulator />} />
+
 
 
       </Routes>

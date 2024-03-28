@@ -1,0 +1,40 @@
+/* styles.css */
+.simulator {
+    display: flex;
+    flex-direction: column; /* Display tables in a column */
+    align-items: center; /* Center align tables and button */
+}
+
+table {
+    border-collapse: collapse;
+    width: 300px; /* Adjust width of tables */
+    margin-bottom: 20px; /* Add space between tables */
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.proceed-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.proceed-button:hover {
+    background-color: #0056b3;
+}
