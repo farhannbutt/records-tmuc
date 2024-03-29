@@ -20,7 +20,8 @@ const createRegistration = async (req, res) => {
             Phone
         });
 
-        res.status(201).json({ newRegistration, token: await newRegistration.generateToken(), 
+        res.status(201).json({ newRegistration, token: 
+            await newRegistration.generateToken(), 
         userId: newRegistration._id.toString() });
     } catch (error) {
         console.error(error);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./registration.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/auth";
 
 export const Registration = () => {
     const [user, setUser] = useState({
@@ -9,8 +10,10 @@ export const Registration = () => {
         Phone: "",
         Password: ""
     });
-    const navigate = useNavigate()
-    
+
+    const navigate = useNavigate();
+    const { storeTokenInLs } = useAuth(); // Correct destructuring
+
     const handleInput = (e) => {
         const { name, value } = e.target;
         setUser({
@@ -35,13 +38,20 @@ export const Registration = () => {
             });
 
             if (response.ok) {
-              setUser({UserName: "", Password: "", Email: "", Phone: ""})
-              navigate("/login")
-            }
+                const res_data = await response.json();
 
-            const data = await response.json();
-            console.log(JSON.stringify(data));
-            // Handle response data as needed
+                console.log("response from server", res_data);
+
+                // Storing token in local storage
+                storeTokenInLs(res_data.token); // Correct function call
+
+                setUser({UserName: "", Password: "", Email: "", Phone: ""});
+                navigate("/login");
+            } else {
+                const data = await response.json();
+                console.log(JSON.stringify(data));
+                // Handle response data as needed
+            }
         } catch (error) {
             console.error('register', error);
         }
