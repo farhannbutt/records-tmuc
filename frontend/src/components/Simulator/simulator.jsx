@@ -1,33 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './simulator.css';
 
 const SimulatorPage = () => {
-  // Sample data for floors
-  const [floors, setFloors] = useState([
-    { id: 1, name: 'Floor 1', departmentId: 'Dept 1' },
-    { id: 2, name: 'Floor 2', departmentId: 'Dept 2' },
-    { id: 3, name: 'Floor 3', departmentId: 'Dept 3' },
-    { id: 4, name: 'Floor 4', departmentId: 'Dept 4' },
-    { id: 5, name: 'Floor 5', departmentId: 'Dept 5' },
-  ]);
-
-  // Sample data for rooms
-  const [rooms, setRooms] = useState([
-    { id: 1, name: 'Room 101', floorId: 1 },
-    { id: 2, name: 'Room 201', floorId: 2 },
-    { id: 3, name: 'Room 301', floorId: 3 },
-    { id: 4, name: 'Room 401', floorId: 4 },
-    { id: 5, name: 'Room 501', floorId: 5 },
-  ]);
-
-  // Sample data for students
-  const [students, setStudents] = useState([
-    { id: 1, name: 'John Doe', roomId: 1 },
-    { id: 2, name: 'Jane Smith', roomId: 2 },
-    { id: 3, name: 'Michael Johnson', roomId: 3 },
-    { id: 4, name: 'Emily Davis', roomId: 4 },
-    { id: 5, name: 'Chris Wilson', roomId: 5 },
-  ]);
+  const [floors, setFloors] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   const [selectedFloor, setSelectedFloor] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -35,13 +12,94 @@ const SimulatorPage = () => {
   const [showRooms, setShowRooms] = useState(false);
   const [showStudents, setShowStudents] = useState(false);
 
+  
   // Function to handle selection of floor
   const handleFloorSelection = (floor) => {
     setSelectedFloor(floor);
     setSelectedRoom(null); // Reset room selection
     setSelectedStudent(null); // Reset student selection
+    fetchRoomData(floor.Floor_id);
     setShowRooms(true);
   };
+
+  
+//calling all students
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/students', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setStudents(data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+//calling all floors
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/floor', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setFloors(data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+
+  const fetchRoomData = async (Floor_id) => {
+    try {
+      // if (!selectedFloor) {
+      //   console.error('No floor selected');
+      //   return;
+      // }
+  //calling rooms by floor id 
+      const response = await fetch(`http://localhost:5000/api/rooms/by-floor-id/${Floor_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+  
+      const data = await response.json();
+      setRooms(data); // Update state with fetched data
+      console.log("data" + JSON.stringify(data))
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };  
+
+
+
 
   // Function to handle selection of room
   const handleRoomSelection = (room) => {
@@ -77,7 +135,7 @@ const SimulatorPage = () => {
             <th>Department ID</th>
           </tr>
           {floors.map((floor) => (
-            <tr key={floor.id}>
+            <tr key={floor.Floor_id}>
               <td>
                 <input
                   type="checkbox"
@@ -85,8 +143,8 @@ const SimulatorPage = () => {
                   onChange={() => handleFloorSelection(floor)}
                 />
               </td>
-              <td>{floor.name}</td>
-              <td>{floor.departmentId}</td>
+              <td>{floor.Floor_id}</td>
+              <td>{floor.Department_id}</td>
             </tr>
           ))}
         </tbody>
@@ -103,7 +161,7 @@ const SimulatorPage = () => {
               <th>Floor ID</th>
             </tr>
             {rooms.map((room) => (
-              <tr key={room.id}>
+              <tr key={room.Room_id}>
                 <td>
                   <input
                     type="checkbox"
@@ -111,8 +169,8 @@ const SimulatorPage = () => {
                     onChange={() => handleRoomSelection(room)}
                   />
                 </td>
-                <td>{room.name}</td>
-                <td>{room.floorId}</td>
+                <td>{room.Name}</td>
+                <td>{room.Floor_id}</td>
               </tr>
             ))}
           </tbody>
@@ -130,7 +188,7 @@ const SimulatorPage = () => {
               <th>Room ID</th>
             </tr>
             {students.map((student) => (
-              <tr key={student.id}>
+              <tr key={student.Student_id}>
                 <td>
                   <input
                     type="checkbox"
@@ -138,8 +196,8 @@ const SimulatorPage = () => {
                     onChange={() => handleStudentSelection(student)}
                   />
                 </td>
-                <td>{student.name}</td>
-                <td>{student.roomId}</td>
+                <td>{student.Name}</td>
+                <td>{student.Email}</td>
               </tr>
             ))}
           </tbody>
