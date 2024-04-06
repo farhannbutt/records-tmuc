@@ -1,44 +1,38 @@
-/* StudentTable.css */
-
-/* Container styles */
 .student-table-container {
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  /* Table styles */
-  .student-table {
-    width: 100vw;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header styles */
-  .student-table thead th {
-    padding: 12px;
-    text-align: left;
-    background-color: #336494;
-    border-bottom: 2px solid #dee2e6;
-    color: #333;
-  }
-  
-  /* Body styles */
-  .student-table tbody tr:hover {
-    background-color: #f2f4f6;
-  }
-  
-  /* Row styles */
-  .student-table tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #dee2e6;
-    color: #555;
-  }
-  
-  /* Alternating row styles */
-  .student-table tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
-  }
-  
+  margin: auto;
+  padding: 20px;
+}
+
+.add-student-button {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.add-student-link {
+  padding: 10px 20px;
+  background-color: #010102;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.add-student-link:hover {
+  background-color: #0056b3;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.student-table th {
+  background-color: #336494;
+}

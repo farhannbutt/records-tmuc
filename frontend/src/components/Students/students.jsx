@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './students.css';
 
 const StudentTable = () => {
@@ -30,6 +31,9 @@ const StudentTable = () => {
 
   return (
     <div className="student-table-container">
+      <div className="add-student-button">
+        <Link to="/AddStudent" className="add-student-link">Add Student</Link>
+      </div>
       <table className="student-table">
         <thead>
           <tr>

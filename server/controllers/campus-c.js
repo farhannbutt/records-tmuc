@@ -6,7 +6,7 @@ const createCampus = async (req, res) => {
         const { Campus_id, Campus_manager, Name, Location, Contact_number } = req.body;
 
         // Checking if the campus already exists
-        const campusExists = await Campus.findOne({ Campus_id });
+        const campusExists = await Campus.findOne({ Campus_manager });
 
         if (campusExists) {
             return res.status(400).json({ message: "Campus already exists" });

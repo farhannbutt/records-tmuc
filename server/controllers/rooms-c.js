@@ -7,7 +7,7 @@ const createRoom = async (req, res) => {
         const { Room_id, Name, Floor_id } = req.body;
 
         // Checking if the room already exists
-        const roomExists = await Room.findOne({ Room_id });
+        const roomExists = await Room.findOne({ Name });
 
         if (roomExists) {
             return res.status(400).json({ message: "Room already exists" });

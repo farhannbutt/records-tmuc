@@ -10,6 +10,9 @@ import CoursesTable from './components/Courses/CourseTable.jsx';
 import RegistrationTable from './components/Registration/registration.jsx';
 import Simulator from './components/Simulator/simulator.jsx';
 import { AuthProvider } from './store/auth.jsx';
+import AddStudent from './components/addStudents/add-students.jsx';
+import Logout from './components/Logout/Logout.jsx';
+
 
 function App() {
   return (
@@ -24,7 +27,9 @@ function App() {
           <Route path="/Course/:Room_id" element={<CoursesTable/>}/>
           <Route path="/registration" element={<RegistrationTable />} />
           <Route path="/simulator" element={<Simulator />} />
-          {/* <Route path="/Logout" element={<Logout />} /> */}
+          <Route path="/AddStudent" element={<AddStudent/>} />
+          <Route path="/Logout" element={<Logout />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

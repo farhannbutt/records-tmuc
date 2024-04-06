@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../store/auth';
+import logoImage from "../Assets/logo.png";
+
 const Login = () => {
   const [user, setUser] = useState({
     UserName: '',
@@ -10,10 +12,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  
-  //calling function here of useauth
-  const  {storeTokenInLs} = useAuth();
-  
+  // Calling function here of useauth
+  const { storeTokenInLs } = useAuth();
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -37,13 +38,8 @@ const Login = () => {
         const res_data = await response.json();
         console.log('response from server', res_data);
 
-
-
         // Assuming you have a login function in useAuth
-        storeTokenInLs(res_data.token); 
-
-
-
+        storeTokenInLs(res_data.token);
 
         setUser({ UserName: '', Password: '' });
         navigate('/');
@@ -61,6 +57,7 @@ const Login = () => {
       <section>
         <main>
           <div className="Section-login">
+            <img src={logoImage} alt="Logo" className="registration-logo" />
             <div className="Login-grid">
               <div className="login-form">
                 <h1 className="main-heading">Login</h1>
@@ -76,17 +73,19 @@ const Login = () => {
                     value={user.UserName}
                     onChange={handleInput}
                   />
-                  <label htmlFor="Password">Password</label>
-                  <input
-                    type="password"
-                    name="Password"
-                    placeholder="Password"
-                    id="Password"
-                    required
-                    autoComplete="off"
-                    value={user.Password}
-                    onChange={handleInput}
-                  />
+                  <div className="password-container">
+                    <label htmlFor="Password">Password</label>
+                    <input
+                      type="password"
+                      name="Password"
+                      placeholder="Password"
+                      id="Password"
+                      required
+                      autoComplete="off"
+                      value={user.Password}
+                      onChange={handleInput}
+                    />
+                  </div>
                   <button type="submit" className="loginbutton">
                     Login
                   </button>

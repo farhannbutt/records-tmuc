@@ -1,0 +1,56 @@
+/* add-students.css */
+
+.background {
+    background-image: url('../Assets/background4.jpg'); 
+    background-size: cover; /* Cover the entire element with the background image */
+    background-position: center; /* Center the background image */
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.add-student-container {
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    height: 400px; 
+    overflow-y: auto; /* Added scrollbar if content exceeds the height */
+}
+
+.add-student-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add-student-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-student-form label {
+    margin-bottom: 5px;
+}
+
+.add-student-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-student-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-student-form button:hover {
+    background-color: #0056b3;
+}

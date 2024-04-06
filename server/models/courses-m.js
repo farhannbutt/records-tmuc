@@ -17,14 +17,23 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-   Room_id: {
+    Room_id: {
         type: String,
         required: false
     },
-    time_slot: {
-        type:String,
+    Start_time: {
+        type:Number,
         required:false
+    },
+    End_time: {
+        type:Number,
+        required:false
+    },
+    Day:{
+        type: String,
+        require: false
     }
+
 
 });
 

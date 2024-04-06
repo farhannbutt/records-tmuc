@@ -3,7 +3,7 @@ const Course = require('../models/courses-m');
 // Create a new course
 const createCourse = async (req, res) => {
     try {
-        const { Course_id, Name, Credits, Program, Room_id, time_slot } = req.body;
+        const { Course_id, Name, Credits, Program, Room_id, Start_time, End_time, Day} = req.body;
 
         // Checking if the course already exists
         const courseExists = await Course.findOne({ Course_id });
@@ -19,7 +19,9 @@ const createCourse = async (req, res) => {
             Credits,
             Program,
             Room_id,
-            time_slot
+            Start_time,
+            End_time,
+            Day
         });
 
         res.status(201).json(newCourse);

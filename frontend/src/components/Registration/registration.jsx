@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logoImage from "../Assets/logo.png"
 import "./registration.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth";
@@ -62,6 +63,7 @@ export const Registration = () => {
             <section>
                 <main>
                     <div className="Section-registration">
+                    <img src={logoImage} alt="Logo" className="registration-logo" /> 
                         <div className="registration-form">
                             <h1 className="main-heading">Registration</h1>
                             <form onSubmit={handleSubmit}>

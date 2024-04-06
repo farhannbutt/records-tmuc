@@ -5,22 +5,18 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px; /* Add padding as needed */
-    padding-bottom: 10px; /* Add padding as needed */
-    background-color: #282626; /* Example background color, adjust as needed */
+    /* padding-top: 10px;  */
+    /* padding-bottom: 10px;  */
+    background-color: #000000; /* Example background color, adjust as needed */
     color: white; /* Example text color, adjust as needed */
   }
   
   .navbar img {
-    width: 70px; /* Adjust the width as needed */
+    width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Add margin as needed */
     border-radius: 8px; /* Add border-radius for rounded corners */
     background-color: #706570; 
-  }
-  
-  .navbar p {
-    margin: 0; 
   }
   
   .navbar ul {
@@ -45,14 +41,14 @@
   }
   
   .Login button {
-    background-color: #b545a8; /* Example button background color, adjust as needed */
+    background: linear-gradient(to right, #2929c5, #510693); /* Linear gradient background */
     color: rgb(233, 227, 227); /* Example button text color, adjust as needed */
     border-radius: 8px;
     padding: 10px 20px;
     cursor: pointer;
-    height: 50px;
+    height: 40px;
     margin-right: 50px;
-    /* Add more styles as needed */
+  
   }
   .nav-menu hr{
     border: none;

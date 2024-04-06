@@ -4,57 +4,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to bottom right, rgb(103, 76, 201), rgb(184, 66, 149), rgb(227, 67, 67));
+  background-image: url('../Assets/background4.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  min-height: 100vh;
+  color: white;
 }
 
-/* Adding space between both of the pictures */
 .imageContainer {
   display: flex;
-  justify-content: space-around; /* Adjusted to space-around */
-  flex-direction: row;
-}
-.schoolImage1, .schoolImage2, .schoolImage3 {
-  width: 350px; /* Set the width to your desired size */
-  height: 350px; /* Maintain aspect ratio */
-  border-radius: 15px; /* Add rounded corners */
-  margin: 0 10px; /* Add margin to create space between images */
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
 }
 
-.campuses {
-  font-style: italic;
-  font-weight: 700;
-  margin-right: 400px;
+.schoolImage1 {
+  width: 700px; /* Increase the width of the image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 15px;
+  margin-bottom: 10px; /* Add margin below the image */
+  margin-left:40px;
 }
-
-/* Add styles for the buttons */
-.Islamabadcampus, .Rawalpindicampus, .Karachicampus {
-  padding: 10px 20px; /* Added padding to create space inside the button */
-  background-color: #631212; /* Added background color */
-  color: white; /* Set text color to white */
-  border: none; /* Removed border */
-  border-radius: 5px; /* Added rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  margin: 85px; /* Add margin to create space between buttons */
-  margin-top: 10px;
-}
-
 
 .Islamabadcampus {
- position: relative;
-  margin-right: 205px; 
-}
-.Rawalpindicampus{
-  position: relative;
-  margin-right: 140px;
-}
-.Karachicampus{
-  position: absolute;
-  
+  padding: 10px 20px;
+  background-color: #b64747;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 30px; /* Remove the margin between the button and the image */
+  margin-left: 290px;
 }
 
+
+
 /* Added hover effect */
-.Islamabadcampus:hover, .Rawalpindicampus:hover {
-  background-color: #651111; 
+.Islamabadcampus:hover {
+  background-color: #6e0404; 
 }
+

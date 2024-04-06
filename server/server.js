@@ -15,6 +15,7 @@ const studentdevicerouter = require("./router/studentdevice-r");
 const roomrouter = require("./router/rooms-r")
 const loginrouter = require("./router/login-r");
 const registrationrouter = require("./router/registration-r");
+const simulatorrouter = require("./router/simulator-r");
 
 
 // connecting to db
@@ -42,6 +43,7 @@ app.use("/api/studentdevice", studentdevicerouter);
 app.use("/api/rooms", roomrouter);
 app.use("/api/login", loginrouter);
 app.use("/api/registration", registrationrouter);
+app.use("/api/simulator", simulatorrouter);
 
 
 

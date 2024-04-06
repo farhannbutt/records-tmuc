@@ -13,10 +13,10 @@ const programSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Courses: [{
+    Courses: {
         type: String,
-        ref: true
-    }]
+        required: true
+    }
 });
 
 const Program = mongoose.model("Program", programSchema);

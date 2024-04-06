@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './simulator.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const SimulatorPage = () => {
   const [floors, setFloors] = useState([]);
@@ -11,6 +13,63 @@ const SimulatorPage = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showRooms, setShowRooms] = useState(false);
   const [showStudents, setShowStudents] = useState(false);
+
+  const [checkinTime, setCheckinTime] = useState('');
+  const [checkoutTime, setCheckoutTime] = useState('');
+  const [checkedInProceeded, setCheckedInProceeded ] = useState(false)
+
+  const navigate = useNavigate();
+
+  // Function to handle the clock input change
+  const handleCheckinTimeChange = (e) => {
+    setCheckinTime(e.target.value); // Update the checkinTime state with the selected time
+  };
+
+  const handleCheckoutTimeChange = (e) => {
+    setCheckoutTime(e.target.value); 
+  };
+
+  // Function to handle proceeding with the selected options
+  const handleProceed = () => {
+    if (selectedFloor && selectedRoom && selectedStudent && checkinTime) {
+      // Proceed with the selected options
+      console.log('Proceeding with:', selectedFloor, selectedRoom, selectedStudent, checkinTime);
+      // Send a request to the backend API
+      fetch('http://localhost:5000/api/simulator/enter-in-room', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          roomId: selectedRoom.Room_id, // Assuming selectedRoom has an id property
+          time: checkinTime,
+          checkoutTime,
+          studentId: selectedStudent.Student_id // Assuming selectedStudent has an id property
+        }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.text().then(text => {
+            throw new Error(`Network response was not ok: ${text}`);
+          });
+        }
+        setCheckedInProceeded(true)
+        return response.json();
+      })
+      .then(data => {
+        // Handle response from the API
+        console.log(data);
+        alert('Student Checked in successfully')
+        navigate('/')
+
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } else {
+      alert('Please select options from all three tables before proceeding.');
+    }
+  };
 
   
   // Function to handle selection of floor
@@ -113,15 +172,6 @@ const SimulatorPage = () => {
     setSelectedStudent(student);
   };
 
-  // Function to handle Proceed button click
-  const handleProceed = () => {
-    if (selectedFloor && selectedRoom && selectedStudent) {
-      // Proceed with the selected options
-      console.log('Proceeding with:', selectedFloor, selectedRoom, selectedStudent);
-    } else {
-      alert('Please select options from all three tables before proceeding.');
-    }
-  };
 
   return (
     <div className="simulator">
@@ -207,7 +257,21 @@ const SimulatorPage = () => {
       {/* Clock for Check-in Time */}
       <div className="checkin-clock">
         <label htmlFor="checkin-time">Check-in Time:</label>
-        <input type="time" id="checkin-time" />
+        <input 
+          type="time" 
+          id="checkin-time" 
+          value={checkinTime} 
+          onChange={handleCheckinTimeChange} // Call handleCheckinTimeChange function when time changes
+        />
+      </div>
+      <div className="checkout-clock">
+        <label htmlFor="checkout-time">Check-out Time:</label>
+        <input 
+          type="time" 
+          id="checkout-time" 
+          value={checkoutTime} 
+          onChange={handleCheckoutTimeChange} // Call handleCheckinTimeChange function when time changes
+        />
       </div>
 
       {/* Proceed Button */}
