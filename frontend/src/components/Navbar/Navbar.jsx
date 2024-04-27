@@ -7,7 +7,7 @@ import './Navbar.css';
 import logo from "../Assets/logo.png";
 
 const Navbar = () => {
-  const { isloggedin } = useAuth(); // Assuming isloggedin returns true/false
+  const { isloggedin } = useAuth();
   const [activeItem, setActiveItem] = useState(null);
 
   const handleItemClick = (index) => {
@@ -29,17 +29,21 @@ const Navbar = () => {
             <NavLink to="/floors" activeClassName="active">Floor</NavLink>
             {activeItem === 1 && <hr />}
           </li>
-          <li className={activeItem === 2 ? 'active' : ''} onClick={() => handleItemClick(2)}>
+          {/* <li className={activeItem === 2 ? 'active' : ''} onClick={() => handleItemClick(2)}>
             <NavLink to="/rooms" activeClassName="active">Room</NavLink>
             {activeItem === 2 && <hr />}
-          </li>
+          </li> */}
           <li className={activeItem === 3 ? 'active' : ''} onClick={() => handleItemClick(3)}>
             <NavLink to="/students" activeClassName="active">Students</NavLink>
             {activeItem === 3 && <hr />}
           </li>
           <li className={activeItem === 4 ? 'active' : ''} onClick={() => handleItemClick(4)}>
-            <NavLink to="/courses" activeClassName="active">Courses</NavLink>
+            <NavLink to="/simulator" activeClassName="active">Simulator</NavLink>
             {activeItem === 4 && <hr />}
+          </li>
+          <li className={activeItem === 5 ? 'active' : ''} onClick={() => handleItemClick(4)}>
+            <NavLink to="/Attendance-report" activeClassName="active">Attendance-Report</NavLink>
+            {activeItem === 5 && <hr />}
           </li>
           <li>
           {isloggedin === false ? (

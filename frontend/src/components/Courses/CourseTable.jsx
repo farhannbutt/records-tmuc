@@ -40,7 +40,10 @@ const CoursesTable = () => {
             <th>Name</th>
             <th>Credits</th>
             <th>Program</th>
-            <th>Slot</th> 
+            <th>Room ID</th>
+            <th>Start Time</th> 
+            <th>End time</th> 
+            
           </tr>
         </thead>
         <tbody>
@@ -51,7 +54,8 @@ const CoursesTable = () => {
               <td>{course.Credits}</td>
               <td>{course.Program}</td>
               <td>{course.Room_id}</td>
-              <td>{course.time_slot}</td> 
+              <td>{course.Start_time}</td> 
+              <td>{course.End_time}</td> 
             </tr>
           ))}
         </tbody>

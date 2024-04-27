@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors")
 const studentrouter = require("./router/students-r");
 const campusrouter = require("./router/campus-r");
-const staffrouter = require("./router/staff-r");
 const courserouter = require("./router/courses-r");
 const programrouter = require("./router/program-r");
 const floorrouter = require("./router/floor-r");
@@ -16,6 +15,8 @@ const roomrouter = require("./router/rooms-r")
 const loginrouter = require("./router/login-r");
 const registrationrouter = require("./router/registration-r");
 const simulatorrouter = require("./router/simulator-r");
+const attendancerouter = require("./router/attendance-r");
+
 
 
 // connecting to db
@@ -32,7 +33,6 @@ app.use(express.json())
 // middleware for the fields
 app.use("/api/students", studentrouter);
 app.use("/api/campus", campusrouter);
-app.use("/api/staff", staffrouter);
 app.use("/api/course", courserouter);
 app.use("/api/program", programrouter);
 app.use("/api/floor", floorrouter);
@@ -44,14 +44,7 @@ app.use("/api/rooms", roomrouter);
 app.use("/api/login", loginrouter);
 app.use("/api/registration", registrationrouter);
 app.use("/api/simulator", simulatorrouter);
-
-
-
-
-
-
-
-
+app.use("/api/attendance-report", attendancerouter);
 
 const PORT = 5000;
 connectDb().then( () =>{
@@ -60,3 +53,5 @@ app.listen(PORT, () => {
     console.log(`server is running at port ${PORT}`);
 });
 })
+
+module.exports = app;

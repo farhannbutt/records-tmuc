@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './simulator.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../store/auth';
 
 
 const SimulatorPage = () => {
@@ -19,6 +20,10 @@ const SimulatorPage = () => {
   const [checkedInProceeded, setCheckedInProceeded ] = useState(false)
 
   const navigate = useNavigate();
+  const { isloggedin } = useAuth();
+  if(!isloggedin){
+    navigate('/login')
+  }  
 
   // Function to handle the clock input change
   const handleCheckinTimeChange = (e) => {
@@ -33,7 +38,7 @@ const SimulatorPage = () => {
   const handleProceed = () => {
     if (selectedFloor && selectedRoom && selectedStudent && checkinTime) {
       // Proceed with the selected options
-      console.log('Proceeding with:', selectedFloor, selectedRoom, selectedStudent, checkinTime);
+      // console.log('Proceeding with:', selectedFloor, selectedRoom, selectedStudent, checkinTime);
       // Send a request to the backend API
       fetch('http://localhost:5000/api/simulator/enter-in-room', {
         method: 'POST',
@@ -41,10 +46,10 @@ const SimulatorPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          roomId: selectedRoom.Room_id, // Assuming selectedRoom has an id property
+          roomId: selectedRoom.Room_id, //  selectedRoom has an id property
           time: checkinTime,
           checkoutTime,
-          studentId: selectedStudent.Student_id // Assuming selectedStudent has an id property
+          studentId: selectedStudent.Student_id //  selectedStudent has an id property
         }),
       })
       .then(response => {
@@ -52,18 +57,23 @@ const SimulatorPage = () => {
           return response.text().then(text => {
             throw new Error(`Network response was not ok: ${text}`);
           });
-        }
-        setCheckedInProceeded(true)
+        }        
         return response.json();
       })
       .then(data => {
         // Handle response from the API
         console.log(data);
-        alert('Student Checked in successfully')
-        navigate('/')
-
+        if(!checkedInProceeded){
+          setCheckedInProceeded(true)
+          alert('Student Checked In successfully')
+        } 
+        else{
+          alert('Student Checked Out successfully')
+          navigate(0)
+        }
       })
       .catch(error => {
+        alert(error.message)
         console.error('Error:', error);
       });
     } else {
@@ -133,11 +143,6 @@ const SimulatorPage = () => {
 
   const fetchRoomData = async (Floor_id) => {
     try {
-      // if (!selectedFloor) {
-      //   console.error('No floor selected');
-      //   return;
-      // }
-  //calling rooms by floor id 
       const response = await fetch(`http://localhost:5000/api/rooms/by-floor-id/${Floor_id}`, {
         method: 'GET',
         headers: {
@@ -235,7 +240,7 @@ const SimulatorPage = () => {
             <tr>
               <th>Select</th>
               <th>Student</th>
-              <th>Room ID</th>
+              <th>Email</th>
             </tr>
             {students.map((student) => (
               <tr key={student.Student_id}>
@@ -255,7 +260,7 @@ const SimulatorPage = () => {
       )}
 
       {/* Clock for Check-in Time */}
-      <div className="checkin-clock">
+     { !checkedInProceeded && <div className="checkin-clock">
         <label htmlFor="checkin-time">Check-in Time:</label>
         <input 
           type="time" 
@@ -263,8 +268,8 @@ const SimulatorPage = () => {
           value={checkinTime} 
           onChange={handleCheckinTimeChange} // Call handleCheckinTimeChange function when time changes
         />
-      </div>
-      <div className="checkout-clock">
+      </div>}
+      {checkedInProceeded &&  <div className="checkout-clock">
         <label htmlFor="checkout-time">Check-out Time:</label>
         <input 
           type="time" 
@@ -272,7 +277,8 @@ const SimulatorPage = () => {
           value={checkoutTime} 
           onChange={handleCheckoutTimeChange} // Call handleCheckinTimeChange function when time changes
         />
-      </div>
+      </div>}
+     
 
       {/* Proceed Button */}
       <button className="proceed-button" onClick={handleProceed}>

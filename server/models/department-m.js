@@ -15,7 +15,7 @@ const departmentSchema = new mongoose.Schema({
     },
     Program: {
         type: String,
-        required: true
+        required: false
     }
 });
 

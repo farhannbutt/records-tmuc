@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const courseSchema = new mongoose.Schema({
     Course_id: {
         type: Number,
@@ -28,15 +27,7 @@ const courseSchema = new mongoose.Schema({
     End_time: {
         type:Number,
         required:false
-    },
-    Day:{
-        type: String,
-        require: false
     }
-
-
 });
-
 const Course = mongoose.model("Course", courseSchema);
-
 module.exports = Course;

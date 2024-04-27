@@ -4,7 +4,9 @@ import React from 'react';
 import './HomeIntro.css';
 import Navbar from '../Navbar/Navbar'; // Import the Navbar component
 import school1 from '../Assets/TMUC.png';
+
 const HomeIntro = () => {
+
   return (
     <div>
       <Navbar /> {/* Render the Navbar component */}

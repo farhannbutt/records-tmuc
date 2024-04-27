@@ -11,7 +11,7 @@ const roomSchema = new mongoose.Schema({
     },
     Floor_id: {
         type: String,
-        required: true
+        required: false
     }
 });
 

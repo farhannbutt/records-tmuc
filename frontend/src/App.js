@@ -12,6 +12,7 @@ import Simulator from './components/Simulator/simulator.jsx';
 import { AuthProvider } from './store/auth.jsx';
 import AddStudent from './components/addStudents/add-students.jsx';
 import Logout from './components/Logout/Logout.jsx';
+import AttendanceReport from './pages/AttendanceReport.jsx';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/attendance-report" element={<AttendanceReport />} />
           <Route path="/students" element={<StudentTable/>} /> 
           <Route path="/floors" element={<FloorTable/>} />
           <Route path="/rooms/:Floor_id" element={<RoomTable/>} />

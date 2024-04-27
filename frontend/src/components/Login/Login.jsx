@@ -38,7 +38,7 @@ const Login = () => {
         const res_data = await response.json();
         console.log('response from server', res_data);
 
-        // Assuming you have a login function in useAuth
+        // 
         storeTokenInLs(res_data.token);
 
         setUser({ UserName: '', Password: '' });

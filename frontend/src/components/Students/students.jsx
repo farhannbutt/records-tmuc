@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './students.css';
+import { useAuth } from '../../store/auth';
 
 const StudentTable = () => {
   const [students, setStudents] = useState([]);
+  const navigate = useNavigate();
+  const { isloggedin } = useAuth();
+  if(!isloggedin){
+    navigate('/login')
+  }  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +50,6 @@ const StudentTable = () => {
             <th>Email</th>
             <th>Contact-number</th>
             <th>RFID</th>
-            <th>Check-in Time</th>
-            <th>Check-out Time</th>
           </tr>
         </thead>
         <tbody>
@@ -58,8 +62,6 @@ const StudentTable = () => {
               <td>{student.Email}</td>
               <td>{student.contact_number}</td>
               <td>{student.rfid}</td>
-              <td>{student.checkInTime}</td>
-              <td>{student.checkOutTime}</td>
             </tr>
           ))}
         </tbody>
